@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: affine-postgres
+    environment:
+      POSTGRES_USER: affine
+      POSTGRES_PASSWORD: affine
+    ports:
+      - "5432:5432"
+    volumes:
+      - affine-postgres:/var/lib/postgresql/data
+    networks:
+      - affine-network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: affine-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - affine-network
+
+volumes:
+  affine-postgres:
+
+networks:
+  affine-network:
+    driver: bridge
