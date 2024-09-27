@@ -21,8 +21,15 @@ services:
     networks:
       - affine-network
 
+  redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
 volumes:
   affine-postgres:
+  redis_data:
 
 networks:
   affine-network:
